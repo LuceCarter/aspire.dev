@@ -10,8 +10,8 @@ const databaseProviders = {
       deploy: `var postgres = builder.AddAzurePostgresFlexibleServer("db")\n    .AddDatabase("appdata");`,
     },
     ts: {
-      local: `const postgres = builder.addPostgres('db').addDatabase('appdata');`,
-      deploy: `const postgres = builder.addAzurePostgres('db')\n    .addDatabase('appdata');`,
+      local: `const postgres = await builder.addPostgres('db').addDatabase('appdata');`,
+      deploy: `const postgres = await builder.addAzurePostgres('db')\n    .addDatabase('appdata');`,
     }
   },
   mongodb: {
@@ -22,8 +22,8 @@ const databaseProviders = {
       deploy: `var mongodb = builder.AddMongoDB("db").AddDatabase("appdata");`,
     },
     ts: {
-      local: `const mongodb = builder.addMongoDB('db').addDatabase('appdata');`,
-      deploy: `const mongodb = builder.addMongoDB('db').addDatabase('appdata');`,
+      local: `const mongodb = await builder.addMongoDB('db').addDatabase('appdata');`,
+      deploy: `const mongodb = await builder.addMongoDB('db').addDatabase('appdata');`,
     }
   },
   redis: {
@@ -37,6 +37,17 @@ const databaseProviders = {
       local: `const cache = builder.addRedis('cache');`,
       deploy: `const cache = builder.addAzureRedis('cache');`,
     }
+  mysql: {
+    name: 'MySQL',
+    ref: 'mysql',
+    cs: {
+      local: `var mysql = builder.AddMySql('mysql').AddDatabase('mysqldb');`,
+      deploy: `var mysql = builder.AddMySql('mysql').AddDatabase('mysqldb');`,
+    },
+    ts: {
+      local: `const mysql = await builder.addMySql('mysql').addDatabase('mysqldb');`,
+      deploy: `const mysql = await builder.addMySql('mysql').addDatabase('mysqldb');`,
+    }
   },
   sqlserver: {
     name: 'SQL Server',
@@ -46,8 +57,8 @@ const databaseProviders = {
       deploy: `var sql = builder.AddAzureSqlServer("sql").AddDatabase("sqldata");`,
     },
     ts: {
-      local: `const sql = builder.addSqlServer('sql').addDatabase('sqldata');`,
-      deploy: `const sql = builder.addAzureSqlServer('sql').addDatabase('sqldata');`,
+      local: `const sql = await builder.addSqlServer('sql').addDatabase('sqldata');`,
+      deploy: `const sql = await builder.addAzureSqlServer('sql').addDatabase('sqldata');`,
     }
   }
 };
