@@ -26,17 +26,6 @@ const databaseProviders = {
       deploy: `const mongodb = await builder.addMongoDB('db').addDatabase('appdata');`,
     }
   },
-  redis: {
-    name: 'Redis',
-    ref: 'cache',
-    cs: {
-      local: `var cache = builder.AddRedis("cache");`,
-      deploy: `var cache = builder.AddAzureRedis("cache");`,
-    },
-    ts: {
-      local: `const cache = builder.addRedis('cache');`,
-      deploy: `const cache = builder.addAzureRedis('cache');`,
-    }
   mysql: {
     name: 'MySQL',
     ref: 'mysql',
